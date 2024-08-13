@@ -1,0 +1,68 @@
+﻿@model IEnumerable<AmazonApp.Models.Products>
+@{
+    ViewData["Title"] = "Product Page";
+}
+
+<h1>Products Details</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+            <a asp-action="Create" class="btn btn-primary float-right">Create</a>
+
+        </div>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var product in Model)
+                            {
+                                <tr>
+                                    <td width="20%">@product.Name</td>
+                                    <td width="35%">@product.Description</td>
+                                    <td width="10%">@product.Price</td>
+                                    <td width="20%">
+                                        <img class="prodimg" src="~/ProductImages/@product.Image" alt="@product.Name"/>
+                                    </td>
+                                    <td >
+                                        <a asp-action="Edit" asp-route-id="@product.Id">Edit</a>|<a>Details</a>|<a>Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center"> No Records Found</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            @* <th>Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Actions</th> *@
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

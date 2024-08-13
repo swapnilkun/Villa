@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d20229760c294721bdd8db4af5e913b4" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="VRS_DBModel.C__EFMigrationsHistory" Width="1.5" PointX="15.375" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetRoleClaim" Width="1.5" PointX="8.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetRole" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetUserClaim" Width="1.5" PointX="11.125" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetUserLogin" Width="1.5" PointX="11.625" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetUser" Width="1.5" PointX="8.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.AspNetUserToken" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.MSBrand" Width="1.5" PointX="15.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.MSCategory" Width="1.5" PointX="13" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VRS_DBModel.MSVehicle" Width="1.5" PointX="17.5" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VRS_DBModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.FK_AspNetUserClaims_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.FK_AspNetUserLogins_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.FK_AspNetUserTokens_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.FK_MSVehicle_MSBrand_BrandId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.FK_MSVehicle_MSCategory_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="VRS_DBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Villa", "Villa\Villa.csproj", "{54D88417-3FDE-4BDD-B62E-6AE0321BF121}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmazonApp", "AmazonApp\AmazonApp.csproj", "{3909761F-91CC-4B53-9EED-394E961F5861}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54D88417-3FDE-4BDD-B62E-6AE0321BF121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54D88417-3FDE-4BDD-B62E-6AE0321BF121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54D88417-3FDE-4BDD-B62E-6AE0321BF121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54D88417-3FDE-4BDD-B62E-6AE0321BF121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3909761F-91CC-4B53-9EED-394E961F5861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3909761F-91CC-4B53-9EED-394E961F5861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3909761F-91CC-4B53-9EED-394E961F5861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3909761F-91CC-4B53-9EED-394E961F5861}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7A5C51F-C7CD-4F27-B366-247DE8A54A88}
+	EndGlobalSection
+EndGlobal
