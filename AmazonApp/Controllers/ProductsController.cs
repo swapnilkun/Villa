@@ -70,15 +70,8 @@ namespace AmazonApp.Controllers
             {
                 return NotFound();
             }
-            VMProducts vMProduct = new VMProducts
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-            };
-            ViewBag.Image=product.Image;
-            return View(vMProduct);
+            ViewBag.Image = product.Image;
+            return View(GetMProduct(product));
         }
 
         [HttpPost]
@@ -113,6 +106,54 @@ namespace AmazonApp.Controllers
 
                 throw;
             }
+        }
+
+        public IActionResult Details(int Id)
+        {
+            var product = _dBContext.products.FirstOrDefault(x => x.Id == Id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Image = product.Image;
+            return View(GetMProduct(product));
+        }
+
+        public VMProducts GetMProduct(Products product)
+        {
+            VMProducts vMProduct = new VMProducts
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+            };
+            return vMProduct;
+        }
+
+        public IActionResult Delete(int Id)
+        {
+            var product = _dBContext.products.FirstOrDefault(x => x.Id == Id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Image = product.Image;
+            return View(GetMProduct(product));
+        }
+
+        [HttpPost]
+        public IActionResult Delete(VMProducts vMProduct)
+        {
+            var product = _dBContext.products.FirstOrDefault(x => x.Id == vMProduct.Id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            _dBContext.products.Remove(product);   
+            _dBContext.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

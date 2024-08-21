@@ -10,5 +10,7 @@ namespace AmazonApp.Data
 
         public DbSet<Products> products { get; set; }
         public DbSet<Users> users { get; set; }
+
+
     }
 }
