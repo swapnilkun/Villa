@@ -56,6 +56,7 @@ namespace AmazonApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Image")] Products products)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(products);

@@ -31,36 +31,48 @@ namespace AmazonApp.Controllers
         [HttpPost]
         public IActionResult Create(VMProducts products)
         {
-            try
+            //if (string.IsNullOrEmpty(products.Name))
+            //{
+            //    ModelState.AddModelError("Name", "Name is required");
+            //}
+            //else if (products.Name.ToLower().Contains('*') || products.Name.ToLower().Contains('@') || products.Name.ToLower().Contains('#'))
+            //{
+            //    ModelState.AddModelError("Name", "Special Characters are not required");
+            //}
+            if (ModelState.IsValid)
             {
-                var fileFolder = _appEnvironment.WebRootPath + "\\ProductImages\\";
-                var fileName = DateTime.Now.ToString("ddMMyyhhmmss") + "_" + products.ImageFile.FileName;
-
-                var filePath = fileFolder + fileName;
-
-                using (var stream = System.IO.File.Create(filePath))
+                try
                 {
-                    products.ImageFile.CopyTo(stream);
+                    var fileFolder = _appEnvironment.WebRootPath + "\\ProductImages\\";
+                    var fileName = DateTime.Now.ToString("ddMMyyhhmmss") + "_" + products.ImageFile.FileName;
+
+                    var filePath = fileFolder + fileName;
+
+                    using (var stream = System.IO.File.Create(filePath))
+                    {
+                        products.ImageFile.CopyTo(stream);
+                    }
+
+                    Products prod = new Products();
+
+                    prod.Name = products.Name;
+                    prod.Description = products.Description;
+                    prod.Price = products.Price;
+                    prod.Image = fileName;
+
+                    _dBContext.products.Add(prod);
+                    _dBContext.SaveChanges();
+
+                    return RedirectToAction("Index");
                 }
+                catch (Exception ex)
+                {
 
-                Products prod = new Products();
-
-                prod.Name = products.Name;
-                prod.Description = products.Description;
-                prod.Price = products.Price;
-                prod.Image = fileName;
-
-                _dBContext.products.Add(prod);
-                _dBContext.SaveChanges();
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-
-                throw;
+                    throw;
+                }
             }
 
+            return View(products);
         }
 
         public IActionResult Edit(int Id)
