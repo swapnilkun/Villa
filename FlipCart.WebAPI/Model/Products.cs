@@ -21,5 +21,11 @@ namespace FlipCart.WebAPI.Model
         [Range(0.1, 5000.00)]
         public double Price { get; set; }
 
+        [Required]
+        public string Image { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Category { get; set; }
     }
 }

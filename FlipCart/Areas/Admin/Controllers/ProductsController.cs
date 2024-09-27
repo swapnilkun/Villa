@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using FlipCart.Data;
 using FlipCart.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace FlipCart.Areas.Admin.Controllers
 {
@@ -25,7 +27,18 @@ namespace FlipCart.Areas.Admin.Controllers
         // GET: Admin/Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.products.ToListAsync());
+            //return View(await _context.products.ToListAsync());
+            IEnumerable<Product> products = new List<Product>();
+
+            HttpClient _client = new HttpClient();
+
+            HttpResponseMessage response = await _client.GetAsync("https://localhost:7122/api/v2/ProductsV");
+            response.EnsureSuccessStatusCode(); //Throws an exception if the code is not success
+
+            products = await response.Content.ReadFromJsonAsync<IEnumerable<Product>>();
+
+            return View(products);
+
         }
 
         // GET: Admin/Products/Details/5
@@ -57,12 +70,22 @@ namespace FlipCart.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Image")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Image,Category")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                //_context.Add(product);
+                //await _context.SaveChangesAsync();
+                HttpClient _client = new HttpClient();
+
+               
+                var content = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await _client.PostAsync("https://localhost:7122/api/v2/ProductsV", content);
+                response.EnsureSuccessStatusCode(); //Throws an exception if the code is not success
+
+                var res = await response.Content.ReadAsStringAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(product);

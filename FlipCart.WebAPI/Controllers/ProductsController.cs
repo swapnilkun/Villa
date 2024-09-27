@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FlipCart.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiversion}/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class ProductsController : ControllerBase
     {
         List<Products> products = new List<Products>();
@@ -57,6 +58,43 @@ namespace FlipCart.WebAPI.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+    }
+
+    [Route("api/v{version:apiversion}/[controller]")]
+    [ApiController]
+    [ApiVersion("2.0")]
+    public class ProductsV2Controller : ControllerBase
+    {
+        List<Products> products = new List<Products>();
+        public ProductsV2Controller()
+        {
+            for (int i = 1; i < 6; i++)
+            {
+                Products p = new Products
+                {
+                    Id = i,
+                    Name = $"Product{i}",
+                    Description = "Test Description",
+                    Price = 500 + i,
+                    Category=$"Category{i}"
+                };
+
+                products.Add(p);
+            }
+        }
+
+        [HttpGet]
+        public IEnumerable<Products> Get()
+        {
+            return products;
+        }
+
+        [HttpPost]
+        public Products Post(Products product)
+        {
+            products.Add(product);
+            return product;
         }
     }
 }

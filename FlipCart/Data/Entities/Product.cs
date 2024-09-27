@@ -23,5 +23,7 @@ namespace FlipCart.Data.Entities
 
         [Required]
         public string Image { get; set; }
+
+        public string Category { get; set; }
     }
 }
