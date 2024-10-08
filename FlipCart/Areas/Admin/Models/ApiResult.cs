@@ -1,14 +1,21 @@
 ﻿namespace FlipCart.Areas.Admin.Models
 {
-    public class ApiResult<T>
+    public class ApiResult
     {
-        public T data { get; set; }
-        public object error { get; set; }
+        public bool Success { get; set; }
+
+        public string Message { get; set; }
     }
-    public class Result<T>
+
+    public class ApiResult<T> : ApiResult
     {
-        public T resource { get; set; }
-        public bool success { get; set; }
-        public string message { get; set; }
-    }       
+        public T Resource { get; set; }
+    }
+
+    public class Wrapper<T>
+    {
+        public List<T> Data { get; set; } = new List<T>();
+
+        public string Error { get; set; }
+    }
 }
